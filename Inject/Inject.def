@@ -1,0 +1,3 @@
+EXPORTS
+	Inject		PRIVATE
+	UnInject	PRIVATE
