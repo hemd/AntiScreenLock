@@ -1,0 +1,32 @@
+软件名称：
+	AntiScreenLock
+	反锁屏
+
+标签：
+	域账号
+	工作机 
+
+界面：
+	主界面
+	托盘
+
+功能：
+	反锁屏
+	强力反锁屏——禁用手动锁屏	
+	
+	恢复
+
+
+概要设计：
+	单文件绿色版
+	能升级
+	能试用
+	能支付
+详细设计：
+	WTL
+	升级：https://raw.githubusercontent.com/hemd/AntiScreenLock/main/docs/version.json
+	支付：微信、支付宝
+	支持：QQ群、微信群
+发布：	
+	加壳
+
