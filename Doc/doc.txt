@@ -23,10 +23,10 @@
 	能试用
 	能支付
 详细设计：
-	WTL
-	升级：https://raw.githubusercontent.com/hemd/AntiScreenLock/main/docs/version.json
+	UI：WTL
+	升级：GitHub -> https://raw.githubusercontent.com/hemd/AntiScreenLock/main/docs/version.json
 	支付：微信、支付宝
-	支持：QQ群、微信群
+	支持：QQ群
 发布：	
 	加壳
 
