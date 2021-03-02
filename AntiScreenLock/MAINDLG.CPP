@@ -1,71 +1,74 @@
+// MainDlg.cpp : implementation of the CMainDlg class
+//
+/////////////////////////////////////////////////////////////////////////////
+
 #include "stdafx.h"
+#include "resource.h"
+
+#include "aboutdlg.h"
 #include "MainDlg.h"
 
-#define INJECT_DLL L"Inject.dll"
-
-
-CMainDlg::CMainDlg()
-	: m_bDisableLockScreen(FALSE)
+BOOL CMainDlg::PreTranslateMessage(MSG* pMsg)
 {
-
+	return CWindow::IsDialogMessage(pMsg);
 }
 
-LRESULT CMainDlg::OnBnClickedLockscreen(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/)
+BOOL CMainDlg::OnIdle()
 {
-	// TODO: Add your control notification handler code here
-	LockWorkStation();
+	UIUpdateChildWindows();
+	return FALSE;
+}
+
+LRESULT CMainDlg::OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/)
+{
+	// center the dialog on the screen
+	CenterWindow();
+
+	// set icons
+	HICON hIcon = AtlLoadIconImage(IDR_MAINFRAME, LR_DEFAULTCOLOR, ::GetSystemMetrics(SM_CXICON), ::GetSystemMetrics(SM_CYICON));
+	SetIcon(hIcon, TRUE);
+	HICON hIconSmall = AtlLoadIconImage(IDR_MAINFRAME, LR_DEFAULTCOLOR, ::GetSystemMetrics(SM_CXSMICON), ::GetSystemMetrics(SM_CYSMICON));
+	SetIcon(hIconSmall, FALSE);
+
+	// register object for message filtering and idle updates
+	CMessageLoop* pLoop = _Module.GetMessageLoop();
+	ATLASSERT(pLoop != NULL);
+	pLoop->AddMessageFilter(this);
+	pLoop->AddIdleHandler(this);
+
+	UIAddChildWindowContainer(m_hWnd);
+
+	m_Tray.Create(IDR_MAINFRAME, 0, _T("反锁屏"));
+
+	return TRUE;
+}
+
+LRESULT CMainDlg::OnDestroy(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/)
+{
+	// unregister message filtering and idle updates
+	CMessageLoop* pLoop = _Module.GetMessageLoop();
+	ATLASSERT(pLoop != NULL);
+	pLoop->RemoveMessageFilter(this);
+	pLoop->RemoveIdleHandler(this);
+
 	return 0;
 }
 
-
-LRESULT CMainDlg::OnBnClickedDisablelockscreen(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/)
+LRESULT CMainDlg::OnAppAbout(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/)
 {
-	// TODO: Add your control notification handler code here
-	HMODULE hInjectDll = LoadLibrary(INJECT_DLL);
-	if (hInjectDll)
-	{
-		typedef BOOL(__stdcall * INJECT)();
-		typedef BOOL(__stdcall * UNINJECT)();
-
-		INJECT pInject = (INJECT)GetProcAddress(hInjectDll, "Inject");
-		UNINJECT pUnInject = (UNINJECT)GetProcAddress(hInjectDll, "UnInject");
-
-		if (pInject && pUnInject)
-		{
-			m_bDisableLockScreen = pInject();
-		}
-		
-		FreeLibrary(hInjectDll);
-	}
-
+	CAboutDlg dlg;
+	dlg.DoModal();
 	return 0;
 }
 
-
-LRESULT CMainDlg::OnBnClickedEnablelockscreen(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/)
+LRESULT CMainDlg::OnCancel(WORD /*wNotifyCode*/, WORD wID, HWND /*hWndCtl*/, BOOL& /*bHandled*/)
 {
-	// TODO: 在此添加控件通知处理程序代码
-	if (!m_bDisableLockScreen)
-	{
-		return 0;
-	}
-
-	HMODULE hInjectDll = LoadLibrary(INJECT_DLL);
-	if (hInjectDll)
-	{
-		typedef BOOL(__stdcall * INJECT)();
-		typedef BOOL(__stdcall * UNINJECT)();
-
-		INJECT pInject = (INJECT)GetProcAddress(hInjectDll, "Inject");
-		UNINJECT pUnInject = (UNINJECT)GetProcAddress(hInjectDll, "UnInject");
-
-		if (pInject && pUnInject)
-		{
-			m_bDisableLockScreen = !pUnInject();
-		}
-
-		FreeLibrary(hInjectDll);
-	}
-
+	CloseDialog(wID);
 	return 0;
+}
+
+void CMainDlg::CloseDialog(int nVal)
+{
+	DestroyWindow();
+	::PostQuitMessage(nVal);
 }
