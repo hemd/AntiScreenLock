@@ -101,16 +101,6 @@ LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// Icon
-//
-
-// Icon with lowest ID value placed first to ensure application icon
-// remains consistent on all systems.
-IDI_ENABLE              ICON                    "res\\enable.ico"
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
 // Menu
 //
 

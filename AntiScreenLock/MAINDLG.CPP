@@ -60,10 +60,10 @@ LRESULT CMainDlg::OnInitDialog(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam
 
 	UIAddChildWindowContainer(m_hWnd);
 
-	m_Tray.Create(m_hWnd, IDR_MAINFRAME, IDR_MENU_TRAY, _T("·ÀËøÆÁ"));
-	m_Tray.UpdateTip(_T("·ÀËøÆÁ - Î´¿ªÆô"));
+	m_Tray.Create(m_hWnd, IDR_MAINFRAME, IDR_MENU_TRAY, _T("·ÀËøÆÁ - Î´¿ªÆô"));
+	//m_Tray.UpdateTip(_T("Test"));
 	//Sleep(5000);
-	//m_Tray.UpdateIcon(IDI_ENABLE);
+	//m_Tray.UpdateIcon(IDI_ICON1);
 	//Sleep(5000);
 	//m_Tray.ShowBalloon(_T("Title"), _T("Text"));
 	//Sleep(5000);

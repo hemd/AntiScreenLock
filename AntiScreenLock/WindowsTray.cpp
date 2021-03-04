@@ -22,8 +22,8 @@ BOOL CNotifyTray::Create(HWND hParentWnd, UINT nResIconID, UINT nResMenuID, LPCT
 	// 创建托盘
 	NOTIFYICONDATA nid = { sizeof(nid) };
 	nid.hWnd = CWindowImpl::Create(hParentWnd); // 在父窗口上创建一个隐藏的子窗口
-	nid.uFlags = NIF_GUID | NIF_ICON | NIF_TIP | NIF_MESSAGE;
-	nid.guidItem = __uuidof(IconUUID);
+	nid.uFlags = NIF_ICON | NIF_TIP | NIF_MESSAGE;
+	nid.uID = 0;
 	nid.hIcon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(nResIconID));
 	StringCchCopy(nid.szTip, _countof(nid.szTip), lpszTip);
 	nid.uCallbackMessage = WM_NOTIFYCALLBACK;
@@ -34,16 +34,17 @@ BOOL CNotifyTray::Create(HWND hParentWnd, UINT nResIconID, UINT nResMenuID, LPCT
 BOOL CNotifyTray::Delete()
 {
 	NOTIFYICONDATA nid = { sizeof(nid) };
-	nid.uFlags = NIF_GUID;
-	nid.guidItem = __uuidof(IconUUID);
+	nid.hWnd = m_hWnd;
+	nid.uID = 0;
 	return Shell_NotifyIcon(NIM_DELETE, &nid);
 }
 
 BOOL CNotifyTray::UpdateIcon(UINT nResIconID)
 {
 	NOTIFYICONDATA nid = { sizeof(nid) };
-	nid.uFlags = NIF_GUID | NIF_ICON;
-	nid.guidItem = __uuidof(IconUUID);
+	nid.uFlags = NIF_ICON;
+	nid.hWnd = m_hWnd;
+	nid.uID = 0;
 	nid.hIcon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(nResIconID));
 	return Shell_NotifyIcon(NIM_MODIFY, &nid);
 }
@@ -51,17 +52,19 @@ BOOL CNotifyTray::UpdateIcon(UINT nResIconID)
 BOOL CNotifyTray::UpdateTip(LPCTSTR lpszTip)
 {
 	NOTIFYICONDATA nid = { sizeof(nid) };
-	nid.uFlags = NIF_GUID | NIF_TIP;
+	nid.uFlags = NIF_TIP;
+	nid.hWnd = m_hWnd;
+	nid.uID = 0;
 	StringCchCopy(nid.szTip, _countof(nid.szTip), lpszTip);
-	nid.guidItem = __uuidof(IconUUID);
 	return Shell_NotifyIcon(NIM_MODIFY, &nid);
 }
 
 BOOL CNotifyTray::ShowBalloon(LPCTSTR lpszTitle, LPCTSTR lpszText)
 {
 	NOTIFYICONDATA nid = { sizeof(nid) };
-	nid.uFlags = NIF_GUID | NIF_INFO;
-	nid.guidItem = __uuidof(IconUUID);
+	nid.uFlags = NIF_INFO; 
+	nid.hWnd = m_hWnd;
+	nid.uID = 0;
 	StringCchCopy(nid.szInfoTitle, _countof(nid.szInfoTitle), lpszTitle);
 	StringCchCopy(nid.szInfo, _countof(nid.szInfo), lpszText);
 	return Shell_NotifyIcon(NIM_MODIFY, &nid);

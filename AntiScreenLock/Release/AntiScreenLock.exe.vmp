@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Document Version="2">
+    <Protection InputFileName="AntiScreenLock.exe" Options="1023944" VMCodeSectionName=".upx" OutputFileName="防锁屏.exe">
+        <Messages>
+            <Message Id="0">请关闭调试器后再启动</Message>
+            <Message Id="1">不支持虚拟机里启动</Message>
+            <Message Id="2">文件损坏，请重新下载最新版本</Message>
+            <Message Id="3">请点击“赞助和支持”按钮进行授权</Message>
+        </Messages>
+        <Folders />
+        <Procedures>
+            <Procedure MapAddress="CNotifyTray::CNotifyTray(void)" Options="0" />
+            <Procedure MapAddress="CNotifyTray::~CNotifyTray(void)" Options="0" />
+            <Procedure MapAddress="CNotifyTray::Create(struct HWND__ *,unsigned int,unsigned int,wchar_t const *)" Options="0" />
+            <Procedure MapAddress="CNotifyTray::Delete(void)" Options="0" />
+            <Procedure MapAddress="CNotifyTray::UpdateIcon(unsigned int)" Options="0" />
+            <Procedure MapAddress="CNotifyTray::UpdateTip(wchar_t const *)" Options="0" />
+            <Procedure MapAddress="CNotifyTray::ShowBalloon(wchar_t const *,wchar_t const *)" Options="0" />
+            <Procedure MapAddress="CNotifyTray::ProcessWindowMessage(struct HWND__ *,unsigned int,unsigned int,long,long &amp;,unsigned long)" Options="0" />
+            <Procedure MapAddress="CNotifyTray::OnTrayNotifyCallback(unsigned int,unsigned int,long,int &amp;)" Options="0" />
+            <Procedure MapAddress="CNotifyTray::OnTrayMenuOpen(unsigned short,unsigned short,struct HWND__ *,int &amp;)" Options="0" />
+            <Procedure MapAddress="CNotifyTray::OnTrayMenuExit(unsigned short,unsigned short,struct HWND__ *,int &amp;)" Options="0" />
+            <Procedure MapAddress="CNotifyTray::ShowContextMenu(void)" Options="0" />
+            <Procedure MapAddress="CNotifyTray::`scalar deleting destructor&apos;(unsigned int)" Options="0" />
+            <Procedure MapAddress="CMainDlg::GetInstance(void)" Options="0" />
+            <Procedure MapAddress="CMainDlg::Show(void)" Options="0" />
+            <Procedure MapAddress="CMainDlg::Exit(void)" Options="0" />
+            <Procedure MapAddress="CMainDlg::CMainDlg(void)" Options="0" />
+            <Procedure MapAddress="CMainDlg::Hide(void)" Options="0" />
+            <Procedure MapAddress="CMainDlg::UpdateUI(void)" Options="0" />
+            <Procedure MapAddress="CMainDlg::PreTranslateMessage(struct tagMSG *)" Options="0" />
+            <Procedure MapAddress="CMainDlg::OnIdle(void)" Options="0" />
+            <Procedure MapAddress="CMainDlg::ProcessWindowMessage(struct HWND__ *,unsigned int,unsigned int,long,long &amp;,unsigned long)" Options="0" />
+            <Procedure MapAddress="CMainDlg::OnInitDialog(unsigned int,unsigned int,long,int &amp;)" Options="0" />
+            <Procedure MapAddress="CMainDlg::OnDestroy(unsigned int,unsigned int,long,int &amp;)" Options="0" />
+            <Procedure MapAddress="CMainDlg::OnTimer(unsigned int,unsigned int,long,int &amp;)" Options="0" CompilationType="2" />
+            <Procedure MapAddress="CMainDlg::OnAppPay(unsigned short,unsigned short,struct HWND__ *,int &amp;)" Options="0" />
+            <Procedure MapAddress="CMainDlg::OnHide(unsigned short,unsigned short,struct HWND__ *,int &amp;)" Options="0" />
+            <Procedure MapAddress="CMainDlg::OnBnClickedBtnSwitch(unsigned short,unsigned short,struct HWND__ *,int &amp;)" Options="0" CompilationType="2" />
+            <Procedure MapAddress="CMainDlg::OnBnClickedBtnPay(unsigned short,unsigned short,struct HWND__ *,int &amp;)" Options="0" />
+            <Procedure MapAddress="CMainDlg::`scalar deleting destructor&apos;(unsigned int)" Options="0" />
+            <Procedure MapAddress="_wWinMain@16" Options="0" />
+        </Procedures>
+        <Objects />
+    </Protection>
+    <DLLBox>
+        <Folders />
+    </DLLBox>
+    <Script />
+    <LicenseManager ProductCode="/ALhoboUCkk=" Algorithm="RSA" Bits="2048" PublicExp="AAEAAQ==" PrivateExp="kaWyIhdc5GvH+RDeH1DGhw+Ay4KUlpDFwXC3l6IETCWBRXFJmMUTTqB7L/W5Fb0aG2zTuGpaGPgxlJrwbLLQKa4HqFWp1c/L/lJIMjpF1ETKewqrAK9J7j8e9PnwLvALp2RV86r/3vKwN3WuhosfDJKeODQzEfilpxGpmu6D0cR0XpAULXxvdPJPW9p7ZnH1MivftvoNbU7506xDEtUrMjMUhJEqBxgiT6VQ+ENGsGlNy06I6RFqGSmH4YP74S1GnCEBchgsRvfKe2b+CpJDRVestrbtkjEwkHFKB/Jc3NiCeD0Y5B+Ztjr5v7z9pfq/XuNf3qA8XYQV1WeWi58GfQ==" Modulus="uQaLT30R1qCw64jhhwYMWvWGHHNiQ59+rHO+6o5UCtOmKEbbWozmXkXPBjjnJCQvLyQ5ukUoOdoXPMkoJe2TBTx2WkVQcPMzhi1MZajznys13/WMs+eUIJPm/ZFlaK5J7O9O/CObbw3V8Lcys29Y1B3jC0qTJJXrSTSUMm/5GApY9/4MEgtT954q/Rj0JEqsKdlvowjfSKGxCZWFLMjSWJ0qgqRnNAKJ0r07F6GW1NICVdeKtjq3pGhmKC/kWss3kWCG04zdwwbi7EGcXHp33faqJpTiLk4ciY0xRPGxbQnPFTu86PU8a/jAcPSea3+SSHKyJh1rgmjKn0cetCl+RQ==" />
+</Document>
