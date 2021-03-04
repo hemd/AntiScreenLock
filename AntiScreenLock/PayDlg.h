@@ -4,12 +4,12 @@
 
 #pragma once
 
-class CAboutDlg : public CDialogImpl<CAboutDlg>
+class CPayDlg : public CDialogImpl<CPayDlg>
 {
 public:
 	enum { IDD = IDD_ABOUTBOX };
 
-	BEGIN_MSG_MAP(CAboutDlg)
+	BEGIN_MSG_MAP(CPayDlg)
 		MESSAGE_HANDLER(WM_INITDIALOG, OnInitDialog)
 		COMMAND_ID_HANDLER(IDOK, OnCloseCmd)
 		COMMAND_ID_HANDLER(IDCANCEL, OnCloseCmd)

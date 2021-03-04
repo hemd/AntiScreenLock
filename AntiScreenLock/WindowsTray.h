@@ -1,33 +1,36 @@
 #pragma once
-class CWindowsTray
+#include "resource.h"
+
+class CNotifyTray : public CWindowImpl<CNotifyTray>
 {
+#define  WM_NOTIFYCALLBACK (WM_APP + 1)
 public:
-	CWindowsTray();
-	virtual ~CWindowsTray();
+	CNotifyTray();
+	virtual ~CNotifyTray();
 
 public:
-	BOOL Create(UINT nResIconID, UINT nResMenuID, LPCTSTR pszTip);
+	BOOL Create(HWND hParentWnd, UINT nResIconID, UINT nResMenuID, LPCTSTR lpszTip);
 	BOOL Delete();
-	BOOL Show();
-	BOOL Hide();
-	BOOL IsVisible() const;
-	BOOL Enable();
-	BOOL Disable();
-	BOOL IsEnable() const;
+
+	BOOL UpdateIcon(UINT nResIconID);
+	BOOL UpdateTip(LPCTSTR lpszTip);
+	BOOL ShowBalloon(LPCTSTR lpszTitle, LPCTSTR lpszText);
 
 public:
-	virtual void OnLButtonUp();
-	virtual void OnRButtonUp();
-	virtual void OnLButtonDoubleClick();
-	virtual void OnMouseMove();
+	BEGIN_MSG_MAP(CMainDlg)
+		MESSAGE_HANDLER(WM_NOTIFYCALLBACK, OnTrayNotifyCallback)
+		COMMAND_ID_HANDLER(ID_TRAY_MENU_OPEN, OnTrayMenuOpen)
+		COMMAND_ID_HANDLER(ID_TRAY_MENU_EXIT, OnTrayMenuExit)
+	END_MSG_MAP()
 
-public:
-	virtual HWND GetNotifyWnd();
+	LRESULT OnTrayNotifyCallback(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM /*lParam*/, BOOL& /*bHandled*/);
+	LRESULT OnTrayMenuOpen(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/);
+	LRESULT OnTrayMenuExit(WORD /*wNotifyCode*/, WORD /*wID*/, HWND /*hWndCtl*/, BOOL& /*bHandled*/);
 
 private:
-	BOOL m_bEnabled;
-	BOOL m_bHidden;
+	void ShowContextMenu();
 
-	NOTIFYICONDATA m_nid;
+private:
+	UINT m_nMenuID;
 };
 

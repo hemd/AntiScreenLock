@@ -201,7 +201,7 @@
     </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AboutDlg.cpp" />
+    <ClCompile Include="PayDlg.cpp" />
     <ClCompile Include="AntiScreenLock.cpp" />
     <ClCompile Include="MainDlg.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -213,7 +213,7 @@
     <ClCompile Include="WindowsTray.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AboutDlg.h" />
+    <ClInclude Include="PayDlg.h" />
     <ClInclude Include="MainDlg.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
@@ -225,6 +225,8 @@
   <ItemGroup>
     <Image Include="res\AntiScreenLock.ico" />
     <Image Include="res\enable.ico" />
+    <Image Include="res\wechat.bmp" />
+    <Image Include="res\zfb.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

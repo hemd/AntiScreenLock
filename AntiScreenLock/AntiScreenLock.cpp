@@ -5,7 +5,7 @@
 
 #include "resource.h"
 
-#include "aboutdlg.h"
+#include "PayDlg.h"
 #include "MainDlg.h"
 
 CAppModule _Module;
@@ -15,15 +15,14 @@ int Run(LPTSTR /*lpstrCmdLine*/ = NULL, int nCmdShow = SW_SHOWDEFAULT)
 	CMessageLoop theLoop;
 	_Module.AddMessageLoop(&theLoop);
 
-	CMainDlg dlgMain;
-
-	if (dlgMain.Create(NULL) == NULL)
+	
+	if ( CMainDlg::GetInstance().Create(NULL) == NULL)
 	{
 		ATLTRACE(_T("Main dialog creation failed!\n"));
 		return 0;
 	}
 
-	dlgMain.ShowWindow(nCmdShow);
+	CMainDlg::GetInstance().ShowWindow(nCmdShow);
 
 	int nRet = theLoop.Run();
 
@@ -31,8 +30,23 @@ int Run(LPTSTR /*lpstrCmdLine*/ = NULL, int nCmdShow = SW_SHOWDEFAULT)
 	return nRet;
 }
 
+BOOL SingleInstance()
+{
+	HANDLE hEvent = CreateEvent(NULL, FALSE, FALSE, _T("99E35E29-D7F1-45FF-ADB7-3D03DDB36DFC"));
+	if (hEvent && (GetLastError() == ERROR_ALREADY_EXISTS))
+	{
+		return FALSE;
+	}
+	return TRUE;
+}
+
 int WINAPI _tWinMain(HINSTANCE hInstance, HINSTANCE /*hPrevInstance*/, LPTSTR lpstrCmdLine, int nCmdShow)
 {
+	if (!SingleInstance())
+	{
+		return -1;
+	}
+
 	HRESULT hRes = ::CoInitialize(NULL);
 	ATLASSERT(SUCCEEDED(hRes));
 
