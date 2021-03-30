@@ -28,7 +28,8 @@
 	支付：微信、支付宝
 	支持：QQ群
 技术要点：
-	锁屏API:LockWin
+	锁屏API:LockWorkStation
+	反锁屏：SetThreadExecutionState
 	tray托盘:shell_NotifyIcon
 发布：	
 	加壳
